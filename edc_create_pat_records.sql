@@ -38,6 +38,7 @@ with
         from `prod_core.fct_edcloud_academic_term_enrollment`
         where
             current_at_c = true
+            and grade_ate_c != '12th Grade' -- filter out graduating seniors when generating summer PAT
             and (
                 (
                     current_ct_status_c = 'Active'
@@ -183,7 +184,7 @@ from  prep_data
     -- check_record_count as (
     --     select
     --         at_name_to_create,
-    --         count(learner_account_id) as n_students,
+    --         count(account_id) as n_students,
     --         count(*) as n_records
     -- from prep_data
     -- group by 1
